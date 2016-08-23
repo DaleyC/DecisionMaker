@@ -2,7 +2,17 @@
   "name": "decision-maker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-eslint": "^0.15.0",
+    "gulp-open": "^2.0.0",
+    "jquery": "^3.1.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,26 +20,10 @@
     "type": "git",
     "url": "git+https://github.com/DaleyC/DecisionMaker.git"
   },
-  "author": "Daley C",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DaleyC/DecisionMaker/issues"
   },
-  "homepage": "https://github.com/DaleyC/DecisionMaker#readme",
-  "dependencies": {
-    "browserify": "^13.1.0",
-    "eslint": "^3.3.1",
-    "eslint-plugin-react": "^6.1.2",
-    "gulp": "^3.9.1",
-    "gulp-connect": "^5.0.0",
-    "gulp-eslint": "^0.15.0",
-    "gulp-open": "^2.0.0",
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1",
-    "reactify": "^1.1.1",
-    "vinyl-source-stream": "^1.1.0"
-  },
-  "devDependencies": {
-    "standard": "^8.0.0-beta.5"
-  }
+  "homepage": "https://github.com/DaleyC/DecisionMaker#readme"
 }
