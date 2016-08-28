@@ -30817,22 +30817,109 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":29}],173:[function(require,module,exports){
 $ = jQuery = require('jquery');
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Base = require('./components/base');
 
-ReactDOM.render(React.createElement(Base, null), document.getElementById('app'));
-},{"./components/base":174,"jquery":2,"react":172,"react-dom":3}],174:[function(require,module,exports){
+(function() {
+
+	"use strict";
+
+	var React = require('react');
+	var ReactDOM = require('react-dom');
+	var FoodOptions = require('./components/foodOptions/foodOptions');
+	var Child = FoodOptions;
+	var App = React.createClass({displayName: "App",
+		render: function() {
+			return (
+				React.createElement("div", null, 
+					React.createElement(Child, null)
+				)
+			);
+		}
+	});
+	ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
+})();
+},{"./components/foodOptions/foodOptions":174,"jquery":2,"react":172,"react-dom":3}],174:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var FoodOptionsForm = require('./foodOptionsForm');
+
+var FoodOptions = React.createClass({displayName: "FoodOptions",
+	getInitialState: function() {
+		return{
+			foodOptionsArr: [],
+			value: '',
+			foodList: ''
+		};
+	},
+	handleChange: function(event) {
+		this.setState({value: event.target.value});
+	},
+	handleClick: function(foodItem){
+		this.state.foodOptionsArr.push(this.state.value);
+		this.foodOptionsList();
+		this.setState({value: ''});
+	},
+	handleKeyPress: function (e) {
+		if(e.key === 'Enter') {
+			e.preventDefault();
+			this.handleClick();
+		}
+	},
+	foodOptionsList: function(){
+		var key = 0;
+		var foodList = this.state.foodOptionsArr.map(function(item) {
+			return React.createElement("li", {key: key++}, item);
+		});
+		this.setState({foodList: React.createElement("ul", null, foodList)});
+	},
+	render: function () {
+		return (
+			React.createElement(FoodOptionsForm, {
+				onChange: this.handleChange, 
+				onClick: this.handleClick, 
+				value: this.state.value, 
+				foodList: this.state.foodList, 
+				onKeyPress: this.handleKeyPress})
+		);
+	}
+});
+
+module.exports = FoodOptions;
+
+},{"./foodOptionsForm":175,"react":172}],175:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
 
-var Base = React.createClass({displayName: "Base",
+var FoodOptionsForm = React.createClass({displayName: "FoodOptionsForm",
 	render: function () {
-		return React.createElement("h1", null, "What should we eat?");
+		return (
+			React.createElement("div", {className: "container"}, 
+				React.createElement("form", {className: "form-horizontal"}, 
+					React.createElement("fieldset", null, 
+						React.createElement("div", {className: "form-group"}, 
+							React.createElement("h1", {className: "col-sm-6 col-sm-offset-2"}, "What should we eat?")
+						), 
+						React.createElement("div", {className: "form-group"}, 
+							React.createElement("div", {className: "col-sm-6 col-sm-offset-2"}, 
+								React.createElement("input", {type: "text", className: "form-control", placeholder: "Enter food option here", onChange: this.props.onChange, value: this.props.value, onKeyPress: this.props.onKeyPress})
+							), 
+							React.createElement("div", {className: "col-sm-2 col-xs-12"}, 
+								React.createElement("button", {type: "button", className: "btn btn-primary col-xs-12", onClick: this.props.onClick}, "Add")
+							)
+						), 
+						React.createElement("div", {className: "form-group"}, 
+							React.createElement("div", {className: "strong col-sm-6 col-sm-offset-2"}, 
+								this.props.foodList
+							)
+						)
+					)
+				)
+			)
+		);
 	}
 });
 
-module.exports = Base;
+module.exports = FoodOptionsForm;
 
 },{"react":172}]},{},[173]);
