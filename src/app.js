@@ -7,9 +7,14 @@ $ = jQuery = require('jquery');
 	var React = require('react');
 	var ReactDOM = require('react-dom');
 	var FoodOptions = require('./components/foodOptions/foodOptions');
-	var Child = FoodOptions;
+	var Result = require('./components/result/result');
 	var App = React.createClass({
 		render: function() {
+			var Child;
+			switch(this.props.route){
+				case 'result': Child = Result; break;
+				default: Child = FoodOptions;
+			}
 			return (
 				<div>
 					<Child />
@@ -17,7 +22,12 @@ $ = jQuery = require('jquery');
 			);
 		}
 	});
-	ReactDOM.render(<App />, document.getElementById('app'));
+	function render(){
+		var route = window.location.hash.substr(1);
+		ReactDOM.render(<App route={route} />, document.getElementById('app'));
+	}
+	window.addEventListener('hashchange', render);
+	render();
 })();
 
 

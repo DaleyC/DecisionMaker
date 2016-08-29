@@ -30825,9 +30825,14 @@ $ = jQuery = require('jquery');
 	var React = require('react');
 	var ReactDOM = require('react-dom');
 	var FoodOptions = require('./components/foodOptions/foodOptions');
-	var Child = FoodOptions;
+	var Result = require('./components/result/result');
 	var App = React.createClass({displayName: "App",
 		render: function() {
+			var Child;
+			switch(this.props.route){
+				case 'result': Child = Result; break;
+				default: Child = FoodOptions;
+			}
 			return (
 				React.createElement("div", null, 
 					React.createElement(Child, null)
@@ -30835,13 +30840,19 @@ $ = jQuery = require('jquery');
 			);
 		}
 	});
-	ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
+	function render(){
+		var route = window.location.hash.substr(1);
+		ReactDOM.render(React.createElement(App, {route: route}), document.getElementById('app'));
+	}
+	window.addEventListener('hashchange', render);
+	render();
 })();
-},{"./components/foodOptions/foodOptions":174,"jquery":2,"react":172,"react-dom":3}],174:[function(require,module,exports){
+},{"./components/foodOptions/foodOptions":174,"./components/result/result":176,"jquery":2,"react":172,"react-dom":3}],174:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
 var FoodOptionsForm = require('./foodOptionsForm');
+var Result = require('../result/result');
 
 var FoodOptions = React.createClass({displayName: "FoodOptions",
 	getInitialState: function() {
@@ -30854,10 +30865,14 @@ var FoodOptions = React.createClass({displayName: "FoodOptions",
 	handleChange: function(event) {
 		this.setState({value: event.target.value});
 	},
-	handleClick: function(foodItem){
+	handleClick: function(){
+		if(this.state.value.length < 1){
+			return;
+		}
 		this.state.foodOptionsArr.push(this.state.value);
 		this.foodOptionsList();
 		this.setState({value: ''});
+		this.shuffleOptions();
 	},
 	handleKeyPress: function (e) {
 		if(e.key === 'Enter') {
@@ -30872,21 +30887,33 @@ var FoodOptions = React.createClass({displayName: "FoodOptions",
 		});
 		this.setState({foodList: React.createElement("ul", null, foodList)});
 	},
+	shuffleOptions: function(array){
+		var newArray = array;
+		for (var i = newArray.length - 1; i > 0; i--){
+			var j = Math.floor(Math.random() * (i + 1));
+			var temp = newArray[i];
+			newArray[i] = newArray[j];
+			newArray[j] = temp;
+		}
+		return newArray[0];
+    },
 	render: function () {
 		return (
-			React.createElement(FoodOptionsForm, {
-				onChange: this.handleChange, 
-				onClick: this.handleClick, 
-				value: this.state.value, 
-				foodList: this.state.foodList, 
-				onKeyPress: this.handleKeyPress})
+			React.createElement("div", null, 
+				React.createElement(FoodOptionsForm, {
+					onChange: this.handleChange, 
+					onClick: this.handleClick, 
+					value: this.state.value, 
+					foodList: this.state.foodList, 
+					onKeyPress: this.handleKeyPress})
+			)
 		);
 	}
 });
 
 module.exports = FoodOptions;
 
-},{"./foodOptionsForm":175,"react":172}],175:[function(require,module,exports){
+},{"../result/result":176,"./foodOptionsForm":175,"react":172}],175:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -30904,13 +30931,20 @@ var FoodOptionsForm = React.createClass({displayName: "FoodOptionsForm",
 							React.createElement("div", {className: "col-sm-6 col-sm-offset-2"}, 
 								React.createElement("input", {type: "text", className: "form-control", placeholder: "Enter food option here", onChange: this.props.onChange, value: this.props.value, onKeyPress: this.props.onKeyPress})
 							), 
-							React.createElement("div", {className: "col-sm-2 col-xs-12"}, 
+							React.createElement("div", {className: "col-sm-1 col-xs-12"}, 
 								React.createElement("button", {type: "button", className: "btn btn-primary col-xs-12", onClick: this.props.onClick}, "Add")
 							)
 						), 
 						React.createElement("div", {className: "form-group"}, 
-							React.createElement("div", {className: "strong col-sm-6 col-sm-offset-2"}, 
+							React.createElement("h3", {className: "strong col-sm-6 col-sm-offset-2"}, 
 								this.props.foodList
+							)
+						), 
+						React.createElement("div", {className: "form-group"}, 
+							React.createElement("div", {className: "col-sm-2 col-sm-offset-4 col-xs-12"}, 
+								React.createElement("a", {href: "/#result"}, 
+									React.createElement("button", {type: "button", className: "btn btn-primary btn-lg col-xs-12"}, "Choose")
+								)
 							)
 						)
 					)
@@ -30921,5 +30955,32 @@ var FoodOptionsForm = React.createClass({displayName: "FoodOptionsForm",
 });
 
 module.exports = FoodOptionsForm;
+
+},{"react":172}],176:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var ResultForm = require('./resultForm');
+
+var Result = React.createClass({displayName: "Result",
+	render: function(){
+		return React.createElement("h1", null, "TEST");
+	}
+});
+
+module.exports = Result;
+
+},{"./resultForm":177,"react":172}],177:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var ResultForm = React.createClass({displayName: "ResultForm",
+	render: function(){
+
+	}
+});
+
+module.exports = ResultForm;
 
 },{"react":172}]},{},[173]);
