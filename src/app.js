@@ -9,6 +9,15 @@ $ = jQuery = require('jquery');
 	var FoodOptions = require('./components/foodOptions/foodOptions');
 	var Result = require('./components/result/result');
 	var App = React.createClass({
+		getInitialState: function() {
+			return{
+				decision: ''
+			};
+		},
+		shuffleOptions: function(array){
+			var randomItem = array[Math.floor(Math.random() * array.length)];
+			this.setState({decision: randomItem});
+    	},
 		render: function() {
 			var Child;
 			switch(this.props.route){
@@ -17,7 +26,7 @@ $ = jQuery = require('jquery');
 			}
 			return (
 				<div>
-					<Child />
+					<Child shuffleOptions={this.shuffleOptions} decision={this.state.decision}/>
 				</div>
 			);
 		}

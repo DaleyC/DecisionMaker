@@ -27,7 +27,7 @@ var FoodOptionsForm = React.createClass({
 						<div className="form-group">
 							<div className="col-sm-2 col-sm-offset-4 col-xs-12">
 								<a href="/#result">
-									<button type="button" className="btn btn-primary btn-lg col-xs-12">Choose</button>
+									<button type="button" className="btn btn-primary btn-lg col-xs-12" onClick={this.props.handleClickChoose}>Choose</button>
 								</a>
 							</div>
 						</div>

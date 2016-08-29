@@ -22,7 +22,9 @@ var FoodOptions = React.createClass({
 		this.state.foodOptionsArr.push(this.state.value);
 		this.foodOptionsList();
 		this.setState({value: ''});
-		this.shuffleOptions();
+	},
+	handleClickChoose: function(){
+		this.props.shuffleOptions(this.state.foodOptionsArr);
 	},
 	handleKeyPress: function (e) {
 		if(e.key === 'Enter') {
@@ -37,16 +39,6 @@ var FoodOptions = React.createClass({
 		});
 		this.setState({foodList: <ul>{foodList}</ul>});
 	},
-	shuffleOptions: function(array){
-		var newArray = array;
-		for (var i = newArray.length - 1; i > 0; i--){
-			var j = Math.floor(Math.random() * (i + 1));
-			var temp = newArray[i];
-			newArray[i] = newArray[j];
-			newArray[j] = temp;
-		}
-		return newArray[0];
-    },
 	render: function () {
 		return (
 			<div>
@@ -55,7 +47,8 @@ var FoodOptions = React.createClass({
 					onClick={this.handleClick}
 					value={this.state.value}
 					foodList={this.state.foodList}
-					onKeyPress={this.handleKeyPress}/>
+					onKeyPress={this.handleKeyPress}
+					handleClickChoose={this.handleClickChoose}/>
 			</div>
 		);
 	}

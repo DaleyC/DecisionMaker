@@ -30827,6 +30827,15 @@ $ = jQuery = require('jquery');
 	var FoodOptions = require('./components/foodOptions/foodOptions');
 	var Result = require('./components/result/result');
 	var App = React.createClass({displayName: "App",
+		getInitialState: function() {
+			return{
+				decision: ''
+			};
+		},
+		shuffleOptions: function(array){
+			var randomItem = array[Math.floor(Math.random() * array.length)];
+			this.setState({decision: randomItem});
+    	},
 		render: function() {
 			var Child;
 			switch(this.props.route){
@@ -30835,7 +30844,7 @@ $ = jQuery = require('jquery');
 			}
 			return (
 				React.createElement("div", null, 
-					React.createElement(Child, null)
+					React.createElement(Child, {shuffleOptions: this.shuffleOptions, decision: this.state.decision})
 				)
 			);
 		}
@@ -30872,7 +30881,9 @@ var FoodOptions = React.createClass({displayName: "FoodOptions",
 		this.state.foodOptionsArr.push(this.state.value);
 		this.foodOptionsList();
 		this.setState({value: ''});
-		this.shuffleOptions();
+	},
+	handleClickChoose: function(){
+		this.props.shuffleOptions(this.state.foodOptionsArr);
 	},
 	handleKeyPress: function (e) {
 		if(e.key === 'Enter') {
@@ -30887,16 +30898,6 @@ var FoodOptions = React.createClass({displayName: "FoodOptions",
 		});
 		this.setState({foodList: React.createElement("ul", null, foodList)});
 	},
-	shuffleOptions: function(array){
-		var newArray = array;
-		for (var i = newArray.length - 1; i > 0; i--){
-			var j = Math.floor(Math.random() * (i + 1));
-			var temp = newArray[i];
-			newArray[i] = newArray[j];
-			newArray[j] = temp;
-		}
-		return newArray[0];
-    },
 	render: function () {
 		return (
 			React.createElement("div", null, 
@@ -30905,7 +30906,8 @@ var FoodOptions = React.createClass({displayName: "FoodOptions",
 					onClick: this.handleClick, 
 					value: this.state.value, 
 					foodList: this.state.foodList, 
-					onKeyPress: this.handleKeyPress})
+					onKeyPress: this.handleKeyPress, 
+					handleClickChoose: this.handleClickChoose})
 			)
 		);
 	}
@@ -30943,7 +30945,7 @@ var FoodOptionsForm = React.createClass({displayName: "FoodOptionsForm",
 						React.createElement("div", {className: "form-group"}, 
 							React.createElement("div", {className: "col-sm-2 col-sm-offset-4 col-xs-12"}, 
 								React.createElement("a", {href: "/#result"}, 
-									React.createElement("button", {type: "button", className: "btn btn-primary btn-lg col-xs-12"}, "Choose")
+									React.createElement("button", {type: "button", className: "btn btn-primary btn-lg col-xs-12", onClick: this.props.handleClickChoose}, "Choose")
 								)
 							)
 						)
@@ -30964,7 +30966,7 @@ var ResultForm = require('./resultForm');
 
 var Result = React.createClass({displayName: "Result",
 	render: function(){
-		return React.createElement("h1", null, "TEST");
+		return React.createElement(ResultForm, {decision: this.props.decision});
 	}
 });
 
@@ -30977,7 +30979,15 @@ var React = require('react');
 
 var ResultForm = React.createClass({displayName: "ResultForm",
 	render: function(){
-
+		return (
+			React.createElement("div", {className: "container"}, 
+				React.createElement("form", {className: "form-horizontal"}, 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("h1", {className: "col-md-6 col-md-offset-3"}, this.props.decision)
+					)
+				)
+			)
+		);
 	}
 });
 
