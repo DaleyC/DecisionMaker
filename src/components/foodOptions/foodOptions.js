@@ -12,6 +12,13 @@ var FoodOptions = React.createClass({
 			foodList: ''
 		};
 	},
+	foodOptionsList: function(){
+		var key = 0;
+		var foodList = this.state.foodOptionsArr.map(function(item) {
+			return <li key={key++}>{item}</li>;
+		});
+		this.setState({foodList: <ul>{foodList}</ul>});
+	},
 	handleChange: function(event) {
 		this.setState({value: event.target.value});
 	},
@@ -31,13 +38,6 @@ var FoodOptions = React.createClass({
 			e.preventDefault();
 			this.handleClick();
 		}
-	},
-	foodOptionsList: function(){
-		var key = 0;
-		var foodList = this.state.foodOptionsArr.map(function(item) {
-			return <li key={key++}>{item}</li>;
-		});
-		this.setState({foodList: <ul>{foodList}</ul>});
 	},
 	render: function () {
 		return (
