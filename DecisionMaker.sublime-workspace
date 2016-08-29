@@ -7,14 +7,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "src/index.html",
-			"settings":
-			{
-				"buffer_size": 180,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -24,11 +16,11 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "packa",
+		"last_filter": "pack",
 		"selected_items":
 		[
 			[
-				"packa",
+				"pack",
 				"Package Control: Install Package"
 			]
 		],
@@ -36,10 +28,10 @@
 	},
 	"console":
 	{
-		"height": 157.0,
+		"height": 153.0,
 		"history":
 		[
-			"gulp"
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
 		]
 	},
 	"distraction_free":
@@ -57,36 +49,21 @@
 	],
 	"file_history":
 	[
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/gulpfile.js",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/src/index.html",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/index.html",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/components/foodOptions.js",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/app.js",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/gulpfile.js",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/SaveFoodForm.jsx",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/components/SaveFoodForm.jsx",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/scripts/react-dom.min.js",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/scripts/browser.min.js",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/SaveFoodOptions.jsx",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/components/SaveFoodOptions.jsx",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/style.css",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/app.jsx",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/script.js",
-		"/C/Users/Mike/Documents/Sublime Projects/DecisionMaker/app/script.jsx",
-		"/C/Users/Mike/Documents/Sublime Projects/RestaurantChoosingApp/app/index.html",
-		"/C/Users/Mike/Documents/Sublime Projects/RestaurantChoosingApp/app/script.jsx",
-		"/C/Users/Mike/Documents/Sublime Projects/WhereGoApp/script.jsx",
-		"/C/Users/Mike/Documents/Sublime Projects/WhereGoApp/index.html",
-		"/C/Users/Mike/Documents/Sublime Projects/WhereGoApp/script.js",
-		"/C/Users/Mike/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
+		"/C/Users/Mike/Documents/Sublime Projects/PracticeApp/src/components/homePage.js",
+		"/C/Users/Mike/Documents/Sublime Projects/PracticeApp/src/index.html",
+		"/C/Users/Mike/Documents/Sublime Projects/PracticeApp/src/components/about/aboutPage.js",
+		"/C/Users/Mike/Documents/Sublime Projects/PracticeApp/src/components/common/header.js",
+		"/C/Users/Mike/Documents/Sublime Projects/PracticeApp/src/main.js",
+		"/C/Users/Mike/Documents/Sublime Projects/PracticeApp/gulpfile.js",
+		"/C/Users/Mike/Documents/Sublime Projects/PracticeApp/eslint.config.json"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
-		"height": 90.0,
+		"height": 0.0,
 		"where_history":
 		[
 		]
@@ -96,10 +73,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"wrapper",
-			"components",
-			"'));",
-			"eslint"
+			"panda",
+			"gulp-eslint",
+			"module.js"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -117,47 +93,18 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "src/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 180,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 27.0
 	},
 	"input":
 	{
-		"height": 31.0
+		"height": 35.0
 	},
 	"layout":
 	{
@@ -190,7 +137,7 @@
 	"project": "DecisionMaker.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -228,7 +175,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 216.0,
+	"side_bar_width": 150.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
