@@ -8,7 +8,6 @@ $ = jQuery = require('jquery');
 	var ReactDOM = require('react-dom');
 	var FoodOptions = require('./components/foodOptions/foodOptions');
 	var Result = require('./components/result/result');
-	var Styles = require('./appStyles');
 	var App = React.createClass({
 		getInitialState: function() {
 			return{

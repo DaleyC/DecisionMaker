@@ -23,9 +23,6 @@ var FoodOptions = React.createClass({
 		this.setState({value: event.target.value});
 	},
 	handleClick: function(){
-		if(this.state.value.length < 1){
-			return;
-		}
 		this.state.foodOptionsArr.push(this.state.value);
 		this.foodOptionsList();
 		this.setState({value: ''});
@@ -48,7 +45,8 @@ var FoodOptions = React.createClass({
 					value={this.state.value}
 					foodList={this.state.foodList}
 					onKeyPress={this.handleKeyPress}
-					handleClickChoose={this.handleClickChoose}/>
+					handleClickChoose={this.handleClickChoose}
+					/>
 			</div>
 		);
 	}
